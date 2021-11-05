@@ -3,6 +3,7 @@
 
 
 // WORKING *** 1/100
+// https://numverify.com/documentation
 function numAPIFetch() {
 
     var numAPIUrl = "http://apilayer.net/api/validate?access_key=" + "0d85ce9cb7d0f17ad315893298a686f4" + "&number=" + "12037227189" + "&format=1";
@@ -21,6 +22,7 @@ function numAPIFetch() {
 
 
 // WORKING ***
+// https://ipapi.co/api/#complete-location
 function ipAPIFetch() {
 
     var ipAPIUrl = "https://ipapi.co/" + "68.118.186.242" + "/json/";
@@ -37,6 +39,7 @@ function ipAPIFetch() {
 };
 
 // WORKING *** 1/1000
+// https://rapidapi.com/Top-Rated/api/e-mail-check-invalid-or-disposable-domain/
 function emailAPIFetch () {
 
     var emailAPIUrl = "https://mailcheck.p.rapidapi.com/?domain=" + "raealejandrino@gmail.com";
@@ -58,7 +61,9 @@ function emailAPIFetch () {
     });
 };
 
-emailAPIFetch();
+// GOOGLE MAPS API CHECK ?
+// https://developers.google.com/maps/documentation/embed/map-generator 
 
+// FUNCTION TO CREATE/DISPLAY ELEMENTS
 
 
