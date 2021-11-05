@@ -50,13 +50,23 @@ function emailAPIFetch () {
         }).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
+                displayEmail(data);
             });
         } else {
             alert('fetch error');
         }
     });
 };
+        var displayEmail = function(email) {
+        var emailContainerEl = document.getElementById("email-data");
+            for(var i = 0; i < email.length; i++){
+                var emailEl = document.createElement("div");
+                emailEl.innerHTML = "Email Info:" + email[i].domain;
+                emailContainerEl.appendChild(div);
+                console.log();
+            }
+
+}
 
 emailAPIFetch();
 
