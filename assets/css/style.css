@@ -44,3 +44,8 @@ nav {
 .input-field {
     margin: 5px auto;
 }
+
+.apiContent {
+    width: 60%;
+    margin: 20px auto;
+}
