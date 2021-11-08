@@ -1,6 +1,6 @@
 // MAKE SURE TO HIDE API KEYS
 
-
+var apiContentContainerEl = document.querySelector("#apiContent");
 
 // WORKING *** 1/100
 var numDataEl = document.querySelector("function");
@@ -99,14 +99,21 @@ function emailAPIFetch() {
         }
     });
 };
-        var displayEmail = function(email) {
-        var emailContainerEl = document.getElementById("email-data");
-            for(var i = 0; i < email.length; i++){
-                var emailEl = document.createElement("div");
-                emailEl.innerHTML = "Email Info:" + email[i].domain;
-                emailContainerEl.appendChild(div);
-                console.log();
-            }
+        var displayEmail = function(data) {
+            console.log(data);
+            var dataBlockEl = document.createElement("div");
+
+            var dataBlockContainerEl = document.createElement("div");
+            dataBlockContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+            dataBlockContainerEl.className = "col-s12";
+            dataBlockContainerEl.textContent = "Should you block this email?: " + data.block;
+
+            var dataDisposContainerEl = document.createElement("div");
+            dataDisposContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+            dataDisposContainerEl.className = "col-s12";
+            dataDisposContainerEl.textContent = "Is this email disposable? " + data.disposable;
+            
+            
 
 }
 
