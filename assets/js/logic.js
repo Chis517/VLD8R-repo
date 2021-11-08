@@ -1,6 +1,7 @@
 // MAKE SURE TO HIDE API KEYS
 
 var apiContentContainerEl = document.querySelector(".apiContent");
+var dataBlockEl = document.querySelector(".dataBlock");
 
 
 // WORKING *** 1/100
@@ -127,27 +128,48 @@ var displayEmail = function (data) {
     var dataDisposContainerEl = document.createElement("div");
     dataDisposContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
     dataDisposContainerEl.className = "col-s12";
-    dataDisposContainerEl.textContent = "Is this email disposable? " + data.disposable;
+    dataDisposContainerEl.textContent = "Is this email disposable?: " + data.disposable;
 
+    var dataDomainContainerEl = document.createElement("div");
+    dataDomainContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+    dataDomainContainerEl.className = "col-s12";
+    dataDomainContainerEl.textContent = "What domain is this email from?: " + data.domain;
 
+    var dataRiskContainerEl = document.createElement("div");
+    dataRiskContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+    dataRiskContainerEl.className = "col-s12";
+    dataRiskContainerEl.textContent = "Is this email address impose a risk?: " + data.risk;
 
+    var dataTextContainerEl = document.createElement("div");
+    dataTextContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+    dataTextContainerEl.className = "col-s12";
+    dataTextContainerEl.textContent = "Should you trust this email address?: " + data.text;
 
-
+    var dataValidContainerEl = document.createElement("div");
+    dataValidContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+    dataValidContainerEl.className = "col-s12";
+    dataValidContainerEl.textContent = "Is this a real email address?: " + data.valid;
 
     var redBox = document.createElement("div");
     redBox.setAttribute("style", "background-color: red; height: 100px; width: 150px;");
 
 
 
-    
-
-
-
-
-
-
     apiContentContainerEl.appendChild(dataBlockContainerEl);
     apiContentContainerEl.appendChild(dataDisposContainerEl);
+    apiContentContainerEl.appendChild(dataDomainContainerEl);
+    apiContentContainerEl.appendChild(dataRiskContainerEl);
+    apiContentContainerEl.appendChild(dataTextContainerEl);
+    apiContentContainerEl.appendChild(dataValidContainerEl);
+
+    //dataBlockContainerEl.appendChild(dataBlockEl);
+    //dataDisposContainerEl.appendChild(dataBlockEl);
+    //dataDomainContainerEl.appendChild(dataBlockEl);
+    //dataRiskContainerEl.appendChild(dataBlockEl);
+    //dataTextContainerEl.appendChild(dataBlockEl);
+    //dataValidContainerEl.appendChild(dataBlockEl);
+
+
     apiContentContainerEl.appendChild(redBox);
 
 
@@ -155,5 +177,5 @@ var displayEmail = function (data) {
 
 };
 
-// emailAPIFetch();
+emailAPIFetch();
 
