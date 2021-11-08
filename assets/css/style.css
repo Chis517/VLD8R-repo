@@ -1,0 +1,46 @@
+
+
+nav {
+    background-image: url("../images/HEROBACKGROUND.png")!important;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: 80%;
+}
+
+.logo {
+    margin: 10px 40px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.hero {
+    background-image: url("../images/HEROBACKGROUND.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: 80%;
+    
+}
+
+#heroDesc {
+    padding: 10px;
+    margin: 60px auto;
+}
+
+.search {
+    background-color: white;
+    border-radius: 35px;
+    padding: 10px 20px;
+    width: 80%;
+    margin: 0 auto!important;
+}
+
+.prefix {
+    font-size: 3rem !important; 
+    margin: 5px auto;
+}
+
+.input-field {
+    margin: 5px auto;
+}
