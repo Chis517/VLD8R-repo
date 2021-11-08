@@ -1,15 +1,16 @@
 // MAKE SURE TO HIDE API KEYS
 
-var apiContentContainerEl = document.querySelector("#apiContent");
+var apiContentContainerEl = document.querySelector(".apiContent");
+
 
 // WORKING *** 1/100
 var numDataEl = document.querySelector("function");
 var numInputEL = document.querySelector("input-data");
 
 
-var numSubmitHandler = function(e) {
+var numSubmitHandler = function (e) {
     event.preventDefault();
-    var phoneNum = numInputEL.ariaValueMax.trim();
+    var phoneNum = numInputEL.value.trim();
     if (phoneNum) {
         numAPIFetch(phoneNum);
         numInputEL.value = "";
@@ -18,7 +19,7 @@ var numSubmitHandler = function(e) {
     }
 };
 
-var displayPhoneData = function(valid, number, local_format, international_format, country_prefix, country_code, country_name, location, carrier, line_type) {
+var displayPhoneData = function (valid, number, local_format, international_format, country_prefix, country_code, country_name, location, carrier, line_type) {
     console.log(valid);
     console.log(number);
     console.log(local_format);
@@ -32,22 +33,22 @@ var displayPhoneData = function(valid, number, local_format, international_forma
 
 };
 
-function numAPIFetch() {
-    var numAPIUrl = "http://apilayer.net/api/validate?access_key=" + "0d85ce9cb7d0f17ad315893298a686f4" + "&number=" + numSubmitHandler + "&format=1";
+// function numAPIFetch() {
+//     var numAPIUrl = "http://apilayer.net/api/validate?access_key=" + "0d85ce9cb7d0f17ad315893298a686f4" + "&number=" + numSubmitHandler + "&format=1";
 
-    fetch(numAPIUrl).then(function (response) {
-        if (response.ok) {
-            response.json().then(function(valid) {
-                displayPhoneData(valid, number, local_format, international_format, country_prefix, country_code, country_name, location, carrier, line_type);
-            });
-        } else {
-            alert('fetch error');
-        }
-    });
+//     fetch(numAPIUrl).then(function (response) {
+//         if (response.ok) {
+//             response.json().then(function (valid) {
+//                 displayPhoneData(valid, number, local_format, international_format, country_prefix, country_code, country_name, location, carrier, line_type);
+//             });
+//         } else {
+//             alert('fetch error');
+//         }
+//     });
 
-};
+// };
 
-numAPIFetch();
+// numAPIFetch();
 
 // "valid": true,
 //   "number": "14158586273",
@@ -78,7 +79,7 @@ function ipAPIFetch() {
     });
 };
 
-// WORKING *** 1/1000
+// WORKING *** 20/1000
 function emailAPIFetch() {
 
     var emailAPIUrl = "https://mailcheck.p.rapidapi.com/?domain=" + "raealejandrino@gmail.com";
@@ -99,27 +100,60 @@ function emailAPIFetch() {
         }
     });
 };
-        var displayEmail = function(data) {
-            console.log(data);
-            var dataBlockEl = document.createElement("div");
-
-            var dataBlockContainerEl = document.createElement("div");
-            dataBlockContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-            dataBlockContainerEl.className = "col-s12";
-            dataBlockContainerEl.textContent = "Should you block this email?: " + data.block;
-
-            var dataDisposContainerEl = document.createElement("div");
-            dataDisposContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-            dataDisposContainerEl.className = "col-s12";
-            dataDisposContainerEl.textContent = "Is this email disposable? " + data.disposable;
-            
-            
-
-}
 
 // GOOGLE MAPS API CHECK ?
 // https://developers.google.com/maps/documentation/embed/map-generator 
 
-// FUNCTION TO CREATE/DISPLAY ELEMENTS
+// FUNCTIONS TO CREATE/DISPLAY ELEMENTS
 
+var displayEmail = function (data) {
+    console.log(data);
+    // var temailConainerEl = document.getElementById("email-data");
+    // for (var i = 0; i < email.length; i++) {
+    //     var emailEl = document.createElement("div");
+    //     emailEl.innerHTML = "Email Info:" + email[i].domain;
+    //     emailContainerEl.appendChild(div);
+    //     console.log();
+    // }
+
+    var dataBlockEl = document.createElement("div");
+
+
+    var dataBlockContainerEl = document.createElement("div");
+    dataBlockContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+    dataBlockContainerEl.className = "col-s12";
+    dataBlockContainerEl.textContent = "Should you block this email?: " + data.block;
+
+    var dataDisposContainerEl = document.createElement("div");
+    dataDisposContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
+    dataDisposContainerEl.className = "col-s12";
+    dataDisposContainerEl.textContent = "Is this email disposable? " + data.disposable;
+
+
+
+
+
+
+    var redBox = document.createElement("div");
+    redBox.setAttribute("style", "background-color: red; height: 100px; width: 150px;");
+
+
+
+    
+
+
+
+
+
+
+    apiContentContainerEl.appendChild(dataBlockContainerEl);
+    apiContentContainerEl.appendChild(dataDisposContainerEl);
+    apiContentContainerEl.appendChild(redBox);
+
+
+
+
+};
+
+// emailAPIFetch();
 
