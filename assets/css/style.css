@@ -51,6 +51,16 @@ nav {
     width: 45%;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgb(71, 71, 71);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+    
+}
+
+.dataBlock {
+    padding: 25px;
+    background-color: white;
+}
+
+.iframeBlock {
+    padding: 10px;
+    
 }

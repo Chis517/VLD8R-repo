@@ -27,15 +27,21 @@ function numAPIFetch(num) {
 };
 
 function displayPhoneData(data, num) {
+
+
+    
+    apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition";
+
+
     console.log(data);
     console.log(num);
 
 
     var dataBlockEl = document.createElement("div");
-    dataBlockEl.className = "col s6";
+    dataBlockEl.className = "col s6 dataBlock";
 
     var iframeEl = document.createElement("div");
-    iframeEl.className = "col s6";
+    iframeEl.className = "col s6 iframeBlock";
 
 
     var carrierEl = document.createElement("div");
@@ -87,20 +93,116 @@ function displayPhoneData(data, num) {
 
 // WORKING ***
 // https://ipapi.co/api/#complete-location
-function ipAPIFetch() {
+function ipAPIFetch(ip) {
 
-    var ipAPIUrl = "https://ipapi.co/" + "68.118.186.242" + "/json/";
+    var ipAPIUrl = "https://ipapi.co/" + ip + "/json/";
 
     fetch(ipAPIUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
+                ipDisplay(data, ip);
+               
             });
         } else {
             alert('fetch error');
         }
     });
 };
+
+function ipDisplay(data, ip) {
+
+    
+    apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition";
+
+    console.log(data, ip);
+
+
+    var dataBlockEl = document.createElement("table");
+    dataBlockEl.className = "col s6 dataBlock highlight";
+    var dataBlockElSecondary = document.createElement("tbody");
+
+    var iframeEl = document.createElement("div");
+    iframeEl.className = "col s6 iframeBlock";
+
+
+    var ipAddressEl = document.createElement("tr");
+    var ipAddressElPrimary = document.createElement("td");
+    ipAddressElPrimary.textContent = "Ip Address:";
+    var ipAddressElSecondary = document.createElement("td");
+    ipAddressElSecondary.textContent = ip;
+
+    ipAddressEl.appendChild(ipAddressElPrimary);
+    ipAddressEl.appendChild(ipAddressElSecondary);
+
+
+
+    var regionEl = document.createElement("tr");
+    var regionElPrimary = document.createElement("td");
+    regionElPrimary.textContent = "State:";
+    var regionElSecondary = document.createElement("td");
+    regionElSecondary.textContent = data.region;
+    
+    regionEl.appendChild(regionElPrimary);
+    regionEl.appendChild(regionElSecondary);
+
+
+    var countryNameEl = document.createElement("tr");
+    var countryNameElPrimary = document.createElement("td");
+    countryNameElPrimary.textContent = "Country Name:";
+    var countryNameElSecondary = document.createElement("td");
+    countryNameElSecondary.textContent = data.country_name;
+    
+    countryNameEl.appendChild(countryNameElPrimary);
+    countryNameEl.appendChild(countryNameElSecondary);
+    
+    var cityNameEl = document.createElement("tr");
+    var cityNameElPrimary = document.createElement("td");
+    cityNameElPrimary.textContent= "Location:";
+    var cityNameElSecondary = document.createElement("td");
+    cityNameElSecondary.textContent = data.city;
+    
+    cityNameEl.appendChild(cityNameElPrimary);
+    cityNameEl.appendChild(cityNameElSecondary);
+    
+    var iframeBox = document.createElement("div");
+    iframeEl.innerHTML = '<iframe width="300" height="225" style="border:0; padding: 10px; background-color: white;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=' + data.city  + ',' + data.region_code + '+' + data.country_code + '&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
+    iframeBox.setAttribute("style", "margin: 0 auto;");
+    iframeEl.appendChild(iframeBox);
+
+    iframeEl.appendChild(iframeBox);
+
+    
+
+
+    
+
+
+
+    dataBlockElSecondary.appendChild(ipAddressEl);
+    dataBlockElSecondary.appendChild(regionEl);
+    dataBlockElSecondary.appendChild(countryNameEl);
+    dataBlockElSecondary.appendChild(cityNameEl);
+
+    dataBlockEl.appendChild(dataBlockElSecondary);
+
+
+
+
+
+
+    apiContentContainerEl.appendChild(iframeEl);
+    apiContentContainerEl.appendChild(dataBlockEl);
+
+
+
+
+};
+
+
+
+
+
+
 
 // WORKING *** 20/1000
 function emailAPIFetch(email) {
@@ -130,6 +232,10 @@ function emailAPIFetch(email) {
 // FUNCTIONS TO CREATE/DISPLAY ELEMENTS
 
 var displayEmail = function (data, email) {
+
+   
+    apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition";
+
     console.log(data, email);
     // var temailConainerEl = document.getElementById("email-data");
     // for (var i = 0; i < email.length; i++) {
@@ -140,10 +246,9 @@ var displayEmail = function (data, email) {
     // }
 
     var dataBlockEl = document.createElement("div");
-    dataBlockEl.className = "col s6";
+    dataBlockEl.className = "col s6 dataBlock offset-s3";
 
-    var iframeEl = document.createElement("div");
-    iframeEl.className = "col s6";
+    
 
 
     var dataBlockContainerEl = document.createElement("div");
@@ -192,7 +297,7 @@ var displayEmail = function (data, email) {
 
 
 
-    apiContentContainerEl.appendChild(iframeEl);
+  
     apiContentContainerEl.appendChild(dataBlockEl);
 
     //dataBlockContainerEl.appendChild(dataBlockEl);
@@ -213,30 +318,39 @@ var displayEmail = function (data, email) {
 var testBtn = document.querySelector("#testInput");
 
 testBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+
     console.log(inputEl.value);
     if (inputEl.value.length === 11) {
         event.preventDefault();
 
         apiContentContainerEl.textContent = "";
+        apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
         console.log("phone number");
         numAPIFetch(inputEl.value);
     } else if (inputEl.value.includes("@")) {
         event.preventDefault();
 
         apiContentContainerEl.textContent = "";
+        apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
 
         console.log("test");
         emailAPIFetch(inputEl.value);
     } else if (inputEl.value.includes(".")) {
-        // run ipapi 
+        event.preventDefault();
 
         apiContentContainerEl.textContent = "";
+        apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
 
+        
         console.log("ipapi");
+        ipAPIFetch(inputEl.value);
 
     } else {
 
         apiContentContainerEl.textContent = "";
+        apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
 
         console.log("error");
     }
