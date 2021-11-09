@@ -118,6 +118,10 @@ var displayEmail = function (data) {
     // }
 
     var dataBlockEl = document.createElement("div");
+    dataBlockEl.className = "col s6";
+
+    var iframeEl = document.createElement("div");
+    iframeEl.className = "col s6";
 
 
     var dataBlockContainerEl = document.createElement("div");
@@ -150,17 +154,24 @@ var displayEmail = function (data) {
     dataValidContainerEl.className = "col-s12";
     dataValidContainerEl.textContent = "Is this a real email address?: " + data.valid;
 
-    var redBox = document.createElement("div");
-    redBox.setAttribute("style", "background-color: red; height: 100px; width: 150px;");
+    var iframeBox = document.createElement("div");
+    iframeEl.innerHTML='<iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOwg_06VPwokRYv534QaPC8g&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
+    iframeBox.setAttribute("style", "margin: 0 auto;");
 
 
 
-    apiContentContainerEl.appendChild(dataBlockContainerEl);
-    apiContentContainerEl.appendChild(dataDisposContainerEl);
-    apiContentContainerEl.appendChild(dataDomainContainerEl);
-    apiContentContainerEl.appendChild(dataRiskContainerEl);
-    apiContentContainerEl.appendChild(dataTextContainerEl);
-    apiContentContainerEl.appendChild(dataValidContainerEl);
+    dataBlockEl.appendChild(dataBlockContainerEl);
+    dataBlockEl.appendChild(dataDisposContainerEl);
+    dataBlockEl.appendChild(dataDomainContainerEl);
+    dataBlockEl.appendChild(dataRiskContainerEl);
+    dataBlockEl.appendChild(dataTextContainerEl);
+    dataBlockEl.appendChild(dataValidContainerEl);
+
+
+    iframeEl.appendChild(iframeBox);
+
+    apiContentContainerEl.appendChild(iframeEl);
+    apiContentContainerEl.appendChild(dataBlockEl);
 
     //dataBlockContainerEl.appendChild(dataBlockEl);
     //dataDisposContainerEl.appendChild(dataBlockEl);
@@ -170,7 +181,7 @@ var displayEmail = function (data) {
     //dataValidContainerEl.appendChild(dataBlockEl);
 
 
-    apiContentContainerEl.appendChild(redBox);
+    
 
 
 

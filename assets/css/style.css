@@ -20,6 +20,8 @@ nav {
     background-position: center;
     background-attachment: fixed;
     background-position: 80%;
+    padding: 20px;
+    margin-bottom: 130px;
     
 }
 
@@ -46,6 +48,9 @@ nav {
 }
 
 .apiContent {
-    width: 60%;
+    width: 45%;
     margin: 20px auto;
+    padding: 20px;
+    background-color: rgb(71, 71, 71);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
