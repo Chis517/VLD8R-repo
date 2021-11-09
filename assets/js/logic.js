@@ -4,63 +4,85 @@ var apiContentContainerEl = document.querySelector(".apiContent");
 var dataBlockEl = document.querySelector(".dataBlock");
 
 
+var inputEl = document.getElementById("input_field");
+
+
+
 // WORKING *** 1/100
-var numDataEl = document.querySelector("function");
-var numInputEL = document.querySelector("input-data");
 
 
-var numSubmitHandler = function (e) {
-    event.preventDefault();
-    var phoneNum = numInputEL.value.trim();
-    if (phoneNum) {
-        numAPIFetch(phoneNum);
-        numInputEL.value = "";
-    } else {
-        alert("Please enter a valid search");
-    }
-};
+function numAPIFetch(num) {
+    var numAPIUrl = "http://apilayer.net/api/validate?access_key=" + "0d85ce9cb7d0f17ad315893298a686f4" + "&number=" + num + "&format=1";
 
-var displayPhoneData = function (valid, number, local_format, international_format, country_prefix, country_code, country_name, location, carrier, line_type) {
-    console.log(valid);
-    console.log(number);
-    console.log(local_format);
-    console.log(international_format);
-    console.log(country_prefix);
-    console.log(country_code);
-    console.log(country_name);
-    console.log(location);
-    console.log(carrier);
-    console.log(line_type);
+    fetch(numAPIUrl).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                displayPhoneData(data, num);
+            });
+        } else {
+            alert('fetch error');
+        }
+    });
 
 };
 
-// function numAPIFetch() {
-//     var numAPIUrl = "http://apilayer.net/api/validate?access_key=" + "0d85ce9cb7d0f17ad315893298a686f4" + "&number=" + numSubmitHandler + "&format=1";
+function displayPhoneData(data, num) {
+    console.log(data);
+    console.log(num);
 
-//     fetch(numAPIUrl).then(function (response) {
-//         if (response.ok) {
-//             response.json().then(function (valid) {
-//                 displayPhoneData(valid, number, local_format, international_format, country_prefix, country_code, country_name, location, carrier, line_type);
-//             });
-//         } else {
-//             alert('fetch error');
-//         }
-//     });
 
-// };
+    var dataBlockEl = document.createElement("div");
+    dataBlockEl.className = "col s6";
 
-// numAPIFetch();
+    var iframeEl = document.createElement("div");
+    iframeEl.className = "col s6";
 
-// "valid": true,
-//   "number": "14158586273",
-//   "local_format": "4158586273",
-//   "international_format": "+14158586273",
-//   "country_prefix": "+1",
-//   "country_code": "US",
-//   "country_name": "United States of America",
-//   "location": "Novato",
-//   "carrier": "AT&T Mobility LLC",
-//   "line_type": "mobile"
+
+    var carrierEl = document.createElement("div");
+    carrierEl.textContent= "Carrier: " + data.carrier;
+    carrierEl.className= "col s12";
+
+    var countryNameEl = document.createElement("div");
+    countryNameEl.textContent= "Country Name:  " + data.country_name;
+    countryNameEl.className= "col s12";
+    
+    var locationEl = document.createElement("div");
+    locationEl.textContent= "Location: " + data.location;
+    locationEl.className= "col s12";
+    
+    var iframeBox = document.createElement("div");
+    iframeEl.innerHTML = '<iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=' + data.location  + ',+' + data.country_code + '&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
+    iframeBox.setAttribute("style", "margin: 0 auto;");
+    iframeEl.appendChild(iframeBox);
+
+    iframeEl.appendChild(iframeBox);
+
+    
+
+
+    
+
+
+
+
+    dataBlockEl.appendChild(carrierEl);
+    dataBlockEl.appendChild(countryNameEl);
+    dataBlockEl.appendChild(locationEl);
+
+
+
+
+
+
+    apiContentContainerEl.appendChild(iframeEl);
+    apiContentContainerEl.appendChild(dataBlockEl);
+
+
+
+
+
+};
+
 
 
 // WORKING ***
@@ -81,9 +103,9 @@ function ipAPIFetch() {
 };
 
 // WORKING *** 20/1000
-function emailAPIFetch() {
+function emailAPIFetch(email) {
 
-    var emailAPIUrl = "https://mailcheck.p.rapidapi.com/?domain=" + "raealejandrino@gmail.com";
+    var emailAPIUrl = "https://mailcheck.p.rapidapi.com/?domain=" + email;
 
     fetch(emailAPIUrl, {
         "method": "GET",
@@ -94,7 +116,7 @@ function emailAPIFetch() {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                displayEmail(data);
+                displayEmail(data, email);
             });
         } else {
             alert('fetch error');
@@ -107,8 +129,8 @@ function emailAPIFetch() {
 
 // FUNCTIONS TO CREATE/DISPLAY ELEMENTS
 
-var displayEmail = function (data) {
-    console.log(data);
+var displayEmail = function (data, email) {
+    console.log(data, email);
     // var temailConainerEl = document.getElementById("email-data");
     // for (var i = 0; i < email.length; i++) {
     //     var emailEl = document.createElement("div");
@@ -154,9 +176,10 @@ var displayEmail = function (data) {
     dataValidContainerEl.className = "col-s12";
     dataValidContainerEl.textContent = "Is this a real email address?: " + data.valid;
 
-    var iframeBox = document.createElement("div");
-    iframeEl.innerHTML='<iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOwg_06VPwokRYv534QaPC8g&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
-    iframeBox.setAttribute("style", "margin: 0 auto;");
+    // var iframeBox = document.createElement("div");
+    // iframeEl.innerHTML = '<iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOwg_06VPwokRYv534QaPC8g&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
+    // iframeBox.setAttribute("style", "margin: 0 auto;");
+    // iframeEl.appendChild(iframeBox);
 
 
 
@@ -168,7 +191,6 @@ var displayEmail = function (data) {
     dataBlockEl.appendChild(dataValidContainerEl);
 
 
-    iframeEl.appendChild(iframeBox);
 
     apiContentContainerEl.appendChild(iframeEl);
     apiContentContainerEl.appendChild(dataBlockEl);
@@ -181,12 +203,45 @@ var displayEmail = function (data) {
     //dataValidContainerEl.appendChild(dataBlockEl);
 
 
-    
+
 
 
 
 
 };
 
-emailAPIFetch();
+var testBtn = document.querySelector("#testInput");
+
+testBtn.addEventListener("click", function(event) {
+    console.log(inputEl.value);
+    if (inputEl.value.length === 11) {
+        event.preventDefault();
+
+        apiContentContainerEl.textContent = "";
+        console.log("phone number");
+        numAPIFetch(inputEl.value);
+    } else if (inputEl.value.includes("@")) {
+        event.preventDefault();
+
+        apiContentContainerEl.textContent = "";
+
+        console.log("test");
+        emailAPIFetch(inputEl.value);
+    } else if (inputEl.value.includes(".")) {
+        // run ipapi 
+
+        apiContentContainerEl.textContent = "";
+
+        console.log("ipapi");
+
+    } else {
+
+        apiContentContainerEl.textContent = "";
+
+        console.log("error");
+    }
+
+
+});
+
 
