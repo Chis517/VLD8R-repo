@@ -10,7 +10,7 @@ var arrStor = [];
 
 
 
-// WORKING *** 1/100
+// ==============================================================================  PHONE NUMBER API WORKING *** 1/100 ==============================================================================
 
 
 function numAPIFetch(num) {
@@ -28,6 +28,8 @@ function numAPIFetch(num) {
 
 };
 
+// ============================================================================== PHONE NUMBER DISPLAY ==============================================================================
+
 function displayPhoneData(data, num) {
 
 
@@ -35,35 +37,68 @@ function displayPhoneData(data, num) {
     apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition";
 
 
-    console.log(data);
-    console.log(num);
 
 
-    var dataBlockEl = document.createElement("div");
-    dataBlockEl.className = "col s6 dataBlock";
+    var dataBlockEl = document.createElement("table");
+    dataBlockEl.className = "col s6 dataBlock highlight centered";
 
     var iframeEl = document.createElement("div");
     iframeEl.className = "col s6 iframeBlock";
 
 
-    var carrierEl = document.createElement("div");
-    carrierEl.textContent= "Carrier: " + data.carrier;
-    carrierEl.className= "col s12";
+    var dataBlockElSecondary = document.createElement("tbody");
 
-    var countryNameEl = document.createElement("div");
-    countryNameEl.textContent= "Country Name:  " + data.country_name;
-    countryNameEl.className= "col s12";
+
+
+
+    var carrierEl = document.createElement("tr");
+    var carrierElPrimary = document.createElement("td");
+    carrierElPrimary.textContent = "Carrier:";
+
+    var carrierElSecondary = document.createElement("td");
+    carrierElSecondary.textContent = data.carrier;
+
+    carrierEl.appendChild(carrierElPrimary);
+    carrierEl.appendChild(carrierElSecondary);
+
+    dataBlockElSecondary.appendChild(carrierEl);
+
+
+
+    var countryNameEl = document.createElement("tr");
+    var countryNameElPrimary = document.createElement("td");
+    countryNameElPrimary.textContent = "Country Name:";
+
+    var countryNameElSecondary = document.createElement("td");
+    countryNameElSecondary.textContent = data.country_name;
     
-    var locationEl = document.createElement("div");
-    locationEl.textContent= "Location: " + data.location;
-    locationEl.className= "col s12";
+    countryNameEl.appendChild(countryNameElPrimary);
+    countryNameEl.appendChild(countryNameElSecondary);
+
+    dataBlockElSecondary.appendChild(countryNameEl);
     
+
+
+    var locationEl = document.createElement("tr");
+    var locationElPrimary = document.createElement("td");
+    locationElPrimary.textContent = "Location:";
+
+    var locationElSecondary = document.createElement("td");
+    locationElSecondary.textContent = data.location;
+
+    locationEl.appendChild(locationElPrimary);
+    locationEl.appendChild(locationElSecondary);
+
+    dataBlockElSecondary.appendChild(locationEl);
+    
+    
+
     var iframeBox = document.createElement("div");
-    iframeEl.innerHTML = '<iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=' + data.location  + ',+' + data.country_code + '&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
+    iframeEl.innerHTML = '<iframe width="300" height="225" style="border:0  padding: 10px; background-color: white;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=' + data.location  + ',+' + data.country_code + '&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
     iframeBox.setAttribute("style", "margin: 0 auto;");
     iframeEl.appendChild(iframeBox);
 
-    iframeEl.appendChild(iframeBox);
+   
 
     
 
@@ -73,9 +108,7 @@ function displayPhoneData(data, num) {
 
 
 
-    dataBlockEl.appendChild(carrierEl);
-    dataBlockEl.appendChild(countryNameEl);
-    dataBlockEl.appendChild(locationEl);
+    dataBlockEl.appendChild(dataBlockElSecondary);
 
 
 
@@ -93,7 +126,7 @@ function displayPhoneData(data, num) {
 
 
 
-// WORKING ***
+// ============================================================================== IP API WORKING *** ==============================================================================
 // https://ipapi.co/api/#complete-location
 function ipAPIFetch(ip) {
 
@@ -111,12 +144,13 @@ function ipAPIFetch(ip) {
     });
 };
 
+// ============================================================================== IP DISPLAY ==============================================================================
+
 function ipDisplay(data, ip) {
 
     
     apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition";
 
-    console.log(data, ip);
 
 
     var dataBlockEl = document.createElement("table");
@@ -171,7 +205,7 @@ function ipDisplay(data, ip) {
     iframeBox.setAttribute("style", "margin: 0 auto;");
     iframeEl.appendChild(iframeBox);
 
-    iframeEl.appendChild(iframeBox);
+   
 
     
 
@@ -208,7 +242,7 @@ function ipDisplay(data, ip) {
 
 
 
-// WORKING *** 20/1000
+//  ==============================================================================  EMAIL API WORKING *** 20/1000 ==============================================================================
 function emailAPIFetch(email) {
 
     var emailAPIUrl = "https://mailcheck.p.rapidapi.com/?domain=" + email;
@@ -233,84 +267,117 @@ function emailAPIFetch(email) {
 // GOOGLE MAPS API CHECK ?
 // https://developers.google.com/maps/documentation/embed/map-generator 
 
-// FUNCTIONS TO CREATE/DISPLAY ELEMENTS
+
+// ============================================================================== EMAIL DISPLAY ==============================================================================
 
 var displayEmail = function (data, email) {
 
    
     apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition";
 
-    console.log(data, email);
-    // var temailConainerEl = document.getElementById("email-data");
-    // for (var i = 0; i < email.length; i++) {
-    //     var emailEl = document.createElement("div");
-    //     emailEl.innerHTML = "Email Info:" + email[i].domain;
-    //     emailContainerEl.appendChild(div);
-    //     console.log();
-    // }
 
-    var dataBlockEl = document.createElement("div");
-    dataBlockEl.className = "col s6 dataBlock offset-s3";
+
+    var dataBlockEl = document.createElement("table");
+    dataBlockEl.className = "col s6 dataBlock highlight offset-s3";
+    
+
+
+    var dataBlockElSecondary = document.createElement("tbody");
 
     
 
 
-    var dataBlockContainerEl = document.createElement("div");
-    dataBlockContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-    dataBlockContainerEl.className = "col-s12";
-    dataBlockContainerEl.textContent = "Should you block this email?: " + data.block;
+    var dataBlockContainerEl = document.createElement("tr");
+    
+    var dataBlockContainerElSecondary = document.createElement("td");
+   
+    dataBlockContainerElSecondary.textContent = "Should you block this email?:";
 
-    var dataDisposContainerEl = document.createElement("div");
-    dataDisposContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-    dataDisposContainerEl.className = "col-s12";
-    dataDisposContainerEl.textContent = "Is this email disposable?: " + data.disposable;
+    var dataBlockContainerTer = document.createElement("td");
 
-    var dataDomainContainerEl = document.createElement("div");
-    dataDomainContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-    dataDomainContainerEl.className = "col-s12";
-    dataDomainContainerEl.textContent = "What domain is this email from?: " + data.domain;
+    dataBlockContainerTer.textContent = data.block;
 
-    var dataRiskContainerEl = document.createElement("div");
-    dataRiskContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-    dataRiskContainerEl.className = "col-s12";
-    dataRiskContainerEl.textContent = "Is this email address impose a risk?: " + data.risk;
+    dataBlockContainerEl.appendChild(dataBlockContainerElSecondary);
+    dataBlockContainerEl.appendChild(dataBlockContainerTer);
 
-    var dataTextContainerEl = document.createElement("div");
-    dataTextContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-    dataTextContainerEl.className = "col-s12";
-    dataTextContainerEl.textContent = "Should you trust this email address?: " + data.text;
-
-    var dataValidContainerEl = document.createElement("div");
-    dataValidContainerEl.setAttribute("style", "background-color: white; width: 50%; margin: 0 auto; text-align: center; ");
-    dataValidContainerEl.className = "col-s12";
-    dataValidContainerEl.textContent = "Is this a real email address?: " + data.valid;
-
-    // var iframeBox = document.createElement("div");
-    // iframeEl.innerHTML = '<iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOwg_06VPwokRYv534QaPC8g&key=AIzaSyAfl9qXiBEqLsi1wvqPGoTN9N7f4YtBp38"></iframe>';
-    // iframeBox.setAttribute("style", "margin: 0 auto;");
-    // iframeEl.appendChild(iframeBox);
+    dataBlockElSecondary.appendChild(dataBlockContainerEl);
+    
 
 
 
-    dataBlockEl.appendChild(dataBlockContainerEl);
-    dataBlockEl.appendChild(dataDisposContainerEl);
-    dataBlockEl.appendChild(dataDomainContainerEl);
-    dataBlockEl.appendChild(dataRiskContainerEl);
-    dataBlockEl.appendChild(dataTextContainerEl);
-    dataBlockEl.appendChild(dataValidContainerEl);
+    var dataDisposContainerEl = document.createElement("tr");
+    var dataDisposContainerElPrimary = document.createElement("td");
+    dataDisposContainerElPrimary.textContent = "Is this email disposable?:";
+
+    var dataDisposContainerElSecondary = document.createElement("td");
+    dataDisposContainerElSecondary.textContent = data.disposable;
+
+    dataDisposContainerEl.appendChild(dataDisposContainerElPrimary);
+    dataDisposContainerEl.appendChild(dataDisposContainerElSecondary);
+
+    dataBlockElSecondary.appendChild(dataDisposContainerEl);
 
 
 
+
+    var dataDomainContainerEl = document.createElement("tr");
+    var dataDomainContainerElPrimary = document.createElement("td");
+    dataDomainContainerElPrimary.textContent = "What domain is this email from?:"
+
+    var dataDomainContainerElSecondary = document.createElement("td");
+    dataDomainContainerElSecondary.textContent = data.domain;
+
+    dataDomainContainerEl.appendChild(dataDomainContainerElPrimary);
+    dataDomainContainerEl.appendChild(dataDomainContainerElSecondary);
+
+    dataBlockElSecondary.appendChild(dataDomainContainerEl);
+
+
+    var dataRiskContainerEl = document.createElement("tr");
+    var dataRiskContainerElPrimary = document.createElement("td");
+    dataRiskContainerElPrimary.textContent = "Does this email address impose a risk?:";
+
+    var dataRiskContainerElSecondary = document.createElement("td");
+    dataRiskContainerElSecondary.textContent = data.risk;
+    
+    dataRiskContainerEl.appendChild(dataRiskContainerElPrimary);
+    dataRiskContainerEl.appendChild(dataRiskContainerElSecondary);
+
+    dataBlockElSecondary.appendChild(dataRiskContainerEl);
+
+    var dataTextContainerEl = document.createElement("tr");
+    var dataTextContainerElPrimary = document.createElement("td");
+    dataTextContainerElPrimary.textContent = "Should you trust this email address?:";
+
+    var dataTextContainerElSecondary = document.createElement("td");
+    dataTextContainerElSecondary.textContent = data.text;
+    
+    dataTextContainerEl.appendChild(dataTextContainerElPrimary);
+    dataTextContainerEl.appendChild(dataTextContainerElSecondary);
+
+    dataBlockElSecondary.appendChild(dataBlockContainerEl);
+
+
+    var dataValidContainerEl = document.createElement("tr");
+    var dataValidContainerElPrimary = document.createElement("td");
+    dataValidContainerElPrimary.textContent = "Is this a real email address?:";
+    
+    var dataValidContainerElSecondary = document.createElement("td");
+    dataValidContainerElSecondary.textContent = data.valid;
+    
+    dataValidContainerEl.appendChild(dataValidContainerElPrimary);
+    dataValidContainerEl.appendChild(dataValidContainerElSecondary);
+
+    dataBlockElSecondary.appendChild(dataValidContainerEl);
+
+
+    dataBlockEl.appendChild(dataBlockElSecondary);
   
     apiContentContainerEl.appendChild(dataBlockEl);
 
-    //dataBlockContainerEl.appendChild(dataBlockEl);
-    //dataDisposContainerEl.appendChild(dataBlockEl);
-    //dataDomainContainerEl.appendChild(dataBlockEl);
-    //dataRiskContainerEl.appendChild(dataBlockEl);
-    //dataTextContainerEl.appendChild(dataBlockEl);
-    //dataValidContainerEl.appendChild(dataBlockEl);
 
+
+   
 
 
 
@@ -320,11 +387,11 @@ var displayEmail = function (data, email) {
 };
 
 
-// SEARCH HISTORY 
+// ============================================================================== SEARCH HISTORY ==============================================================================
 var searchRow = document.querySelector(".searchHistory");
 
 function SearchHistoryBtn(searchName) {
-    console.log(searchRow.children);
+    
 
     for (var i=0; i < searchRow.children.length; i++) {
         if (searchRow.children[i].innerText === searchName) {
@@ -361,6 +428,11 @@ inputEl.addEventListener("click", function(event){
     labelMessage.textContent = "";
 });
 
+
+
+
+
+// ============================================================================== LOCALSTORAGE ==============================================================================
 function putIntoStorage(newSearch) {
 
     arrStor.push(newSearch);
@@ -392,25 +464,29 @@ function getFromStorage() {
 
 
 
-// EVENT LISTENERS
+// ============================================================================== EVENT LISTENERS ==============================================================================
 
 testForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
 
-    putIntoStorage(inputEl.value);
-
-
+    
+    
     if (inputEl.value.length === 11) {
         event.preventDefault();
+        
+        putIntoStorage(inputEl.value);
 
+        SearchHistoryBtn(inputEl.value);
        
         apiContentContainerEl.textContent = "";
         apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
-        console.log("phone number");
         numAPIFetch(inputEl.value);
     } else if (inputEl.value.includes("@")) {
         event.preventDefault();
+
+        putIntoStorage(inputEl.value);
+
 
         SearchHistoryBtn(inputEl.value);
 
@@ -422,6 +498,9 @@ testForm.addEventListener("submit", function(event) {
         emailAPIFetch(inputEl.value);
     } else if (inputEl.value.includes(".")) {
         event.preventDefault();
+
+        putIntoStorage(inputEl.value);
+
 
         SearchHistoryBtn(inputEl.value);
 
@@ -439,17 +518,27 @@ testForm.addEventListener("submit", function(event) {
         
         inputEl.value= "";
         labelMessage.textContent= "Invalid Input";
-        console.log("error");
+        
     }
     
     
 
 });
 
+
+
+
+
 searchRow.addEventListener("click", function(event) {
     event.preventDefault();
 
-    console.log(event.target.innerText);
+    if (event.path.length < 9) {
+        return;
+    }
+
+    
+
+    
 
     if (event.target.innerText.length === 11) {
         event.preventDefault();
@@ -457,7 +546,6 @@ searchRow.addEventListener("click", function(event) {
        
         apiContentContainerEl.textContent = "";
         apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
-        console.log("phone number");
         numAPIFetch(event.target.innerText);
     } else if (event.target.innerText.includes("@")) {
         event.preventDefault();
@@ -481,7 +569,7 @@ searchRow.addEventListener("click", function(event) {
         ipAPIFetch(event.target.innerText);
         
     } else {
-        console.log("void");
+        return;
     }
 });
 
