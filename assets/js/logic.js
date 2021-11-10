@@ -6,6 +6,8 @@ var dataBlockEl = document.querySelector(".dataBlock");
 
 var inputEl = document.getElementById("input_field");
 
+var arrStor = [];
+
 
 
 // WORKING *** 1/100
@@ -358,11 +360,46 @@ inputEl.addEventListener("click", function(event){
     labelMessage.textContent = "";
 });
 
+function putIntoStorage(newSearch) {
+
+    arrStor.push(newSearch);
+
+    localStorage.setItem("searches", JSON.stringify(arrStor));
+
+};
+
+function getFromStorage() {
+
+    
+    var retrievedSearches = localStorage.getItem("searches");
+
+    if (!retrievedSearches) {
+        localStorage.setItem("searches", JSON.stringify(arrStor));
+        return false;
+    }
+
+    retrievedSearches = JSON.parse(retrievedSearches);
+
+
+    for (var i=0; i<retrievedSearches.length; i++) {
+        arrStor.push(retrievedSearches[i]);
+        SearchHistoryBtn(retrievedSearches[i]);
+    }
+
+
+};
+
+
+
+// EVENT LISTENERS
+
 testForm.addEventListener("submit", function(event) {
     event.preventDefault();
-    
 
-    console.log(inputEl.value);
+
+    putIntoStorage(inputEl.value);
+
+
     if (inputEl.value.length === 11) {
         event.preventDefault();
 
@@ -447,4 +484,5 @@ searchRow.addEventListener("click", function(event) {
     }
 });
 
+getFromStorage();
 
