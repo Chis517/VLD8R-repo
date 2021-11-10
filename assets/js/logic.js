@@ -84,7 +84,7 @@ function displayPhoneData(data, num) {
     apiContentContainerEl.appendChild(dataBlockEl);
 
 
-
+    window.scrollTo({top: 10000, behavior: 'smooth'});
 
 
 };
@@ -193,7 +193,9 @@ function ipDisplay(data, ip) {
     apiContentContainerEl.appendChild(iframeEl);
     apiContentContainerEl.appendChild(dataBlockEl);
 
+    
 
+    window.scrollTo({top: 10000, behavior: 'smooth'});
 
 
 };
@@ -310,16 +312,40 @@ var displayEmail = function (data, email) {
 
 
 
-
+    window.scrollTo({top: 10000, behavior: 'smooth'});
 
 
 };
 
 
 // SEARCH HISTORY 
+var searchRow = document.querySelector(".searchHistory");
 
-function SearchHistoryBtn() {
+function SearchHistoryBtn(searchName) {
+    console.log(searchRow.children);
+
+    for (var i=0; i < searchRow.children.length; i++) {
+        if (searchRow.children[i].innerText === searchName) {
+            return false;
+        }
+    }
+
     
+    
+    var newSearchButton = document.createElement("a");
+    newSearchButton.classList = "col s3 waves-effect waves-light btn";
+    newSearchButton.setAttribute("style", "margin-right: auto; right: auto;");
+    newSearchButton.textContent = searchName;
+
+
+    searchRow.appendChild(newSearchButton);
+    
+    
+    
+    if (searchRow.childElementCount > 4) {
+     
+        searchRow.removeChild(searchRow.childNodes[5]);
+    }
 };
 
 var testForm = document.querySelector(".input-form");
@@ -340,6 +366,7 @@ testForm.addEventListener("submit", function(event) {
     if (inputEl.value.length === 11) {
         event.preventDefault();
 
+       
         apiContentContainerEl.textContent = "";
         apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
         console.log("phone number");
@@ -347,31 +374,77 @@ testForm.addEventListener("submit", function(event) {
     } else if (inputEl.value.includes("@")) {
         event.preventDefault();
 
+        SearchHistoryBtn(inputEl.value);
+
+        
         apiContentContainerEl.textContent = "";
         apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
 
-        console.log("test");
+      
         emailAPIFetch(inputEl.value);
     } else if (inputEl.value.includes(".")) {
         event.preventDefault();
 
+        SearchHistoryBtn(inputEl.value);
+
         apiContentContainerEl.textContent = "";
         apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
-
         
-        console.log("ipapi");
+        
+      
         ipAPIFetch(inputEl.value);
-
+        
     } else {
-
+        
         apiContentContainerEl.textContent = "";
         apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
-
+        
+        inputEl.value= "";
         labelMessage.textContent= "Invalid Input";
         console.log("error");
     }
+    
+    
+
+});
+
+searchRow.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    console.log(event.target.innerText);
+
+    if (event.target.innerText.length === 11) {
+        event.preventDefault();
+
+       
+        apiContentContainerEl.textContent = "";
+        apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
+        console.log("phone number");
+        numAPIFetch(event.target.innerText);
+    } else if (event.target.innerText.includes("@")) {
+        event.preventDefault();
 
 
+        
+        apiContentContainerEl.textContent = "";
+        apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
+
+      
+        emailAPIFetch(event.target.innerText);
+    } else if (event.target.innerText.includes(".")) {
+        event.preventDefault();
+
+
+        apiContentContainerEl.textContent = "";
+        apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
+        
+        
+      
+        ipAPIFetch(event.target.innerText);
+        
+    } else {
+        console.log("void");
+    }
 });
 
 
