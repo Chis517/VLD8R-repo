@@ -1,0 +1,78 @@
+
+
+nav {
+    background-image: url("../images/HEROBACKGROUND.png")!important;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: 80%;
+}
+
+.logo {
+    margin: 10px 40px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.hero {
+    background-image: url("../images/HEROBACKGROUND.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: 80%;
+    padding: 20px;
+    margin-bottom: 45px;
+    
+}
+
+#heroDesc {
+    padding: 10px;
+    margin: 28px auto;
+}
+
+.search {
+    background-color: white;
+    border-radius: 35px;
+    padding: 10px 20px;
+    width: 75%;
+    margin: 0 auto!important;
+}
+
+.searchHistory {
+    display: flex;
+    width: 75%;
+    margin: 20px auto!important;
+    justify-content: center!important;
+}
+
+.searchHistory a {
+    margin: 0 10px;
+    width: 18%!important;
+}
+
+.prefix {
+    font-size: 3rem !important; 
+    margin: 5px auto;
+}
+
+.input-field {
+    margin: 5px auto;
+}
+
+.apiContent {
+    width: 45%;
+    margin: 20px auto;
+    padding: 20px;
+    
+    
+}
+
+.dataBlock {
+    padding: 25px;
+    background-color: white;
+}
+
+.iframeBlock {
+    padding: 10px;
+    
+}
