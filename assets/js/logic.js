@@ -336,7 +336,8 @@ function SearchHistoryBtn(searchName) {
     
     var newSearchButton = document.createElement("a");
     newSearchButton.classList = "col s3 waves-effect waves-light btn";
-    newSearchButton.setAttribute("style", "margin-right: auto; right: auto;");
+    newSearchButton.setAttribute("style", "margin-right: auto; right: auto; text-overflow: ellipsis; text-transform: none!important;");
+    newSearchButton.setAttribute("title", searchName);
     newSearchButton.textContent = searchName;
 
 
