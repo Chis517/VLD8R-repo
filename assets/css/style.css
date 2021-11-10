@@ -21,21 +21,33 @@ nav {
     background-attachment: fixed;
     background-position: 80%;
     padding: 20px;
-    margin-bottom: 130px;
+    margin-bottom: 20px;
     
 }
 
 #heroDesc {
     padding: 10px;
-    margin: 60px auto;
+    margin: 28px auto;
 }
 
 .search {
     background-color: white;
     border-radius: 35px;
     padding: 10px 20px;
-    width: 80%;
+    width: 75%;
     margin: 0 auto!important;
+}
+
+.searchHistory {
+    display: flex;
+    width: 75%;
+    margin: 20px auto!important;
+    justify-content: center!important;
+}
+
+.searchHistory a {
+    margin: 0 10px;
+    width: 18%!important;
 }
 
 .prefix {

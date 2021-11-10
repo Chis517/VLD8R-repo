@@ -315,9 +315,24 @@ var displayEmail = function (data, email) {
 
 };
 
-var testBtn = document.querySelector("#testInput");
 
-testBtn.addEventListener("click", function(event) {
+// SEARCH HISTORY 
+
+function SearchHistoryBtn() {
+    
+};
+
+var testForm = document.querySelector(".input-form");
+
+var labelMessage = document.querySelector("#labelInput");
+
+inputEl.addEventListener("click", function(event){
+    event.preventDefault();
+
+    labelMessage.textContent = "";
+});
+
+testForm.addEventListener("submit", function(event) {
     event.preventDefault();
     
 
@@ -352,6 +367,7 @@ testBtn.addEventListener("click", function(event) {
         apiContentContainerEl.textContent = "";
         apiContentContainerEl.classList = "apiContent row z-depth-5 grey darken-2 scale-transition scale-out";
 
+        labelMessage.textContent= "Invalid Input";
         console.log("error");
     }
 

@@ -37,21 +37,37 @@
                     <h6 class=>Find out if it's a real person or a robot!</h6>
                 </div>
                 <div class="row search">
-                    <form class="col-s12">
-                        <div class="input-field col s11">
+                    <form class="col s12 input-form">
+                        <div class="input-field col s10 offset-s1 " style="border-right: 1px solid rgba(0,0,0, .3);">
                             <input id="input_field" type="text" class="validate" />
-                            <label for="input_field"></label>
+                            <label id="labelInput" for="input_field"></label>
                         </div>
-                        <i class="material-icons prefix black-text searchIcon col s1">search</i>
-                        <input id="testInput" type="submit" name="testInput" />
+                        <div class="col s1">
+                            <button class="btn-floating btn-large btn-flat transparent " id="testInput" type="submit" name="action">
+                                <i class="material-icons dp48" style="font-size: xxx-large; color: black;">search</i>
+                                <!-- <i class="material-icons">add</i> -->
+                              </button>
+                            <!-- <button class="btn waves-effect waves-light" id="testInput" type="submit" name="action">Search
+                                <i class="material-icons dp48">search</i>
+                              </button> -->
+                        </div>
                     </form>
                 </div>
-
-                <!-- <div class="row">
-                    <div class="col-s6">
-                            
-                    </div>
-                </div> -->
+                <div class="row searchHistory">
+                    <a class="col s3 waves-effect waves-light btn">
+                            Text
+                    </a>
+                    <a class="col s3 waves-effect waves-light btn">
+                        Text
+                    </a>
+                    <a class="col s3 waves-effect waves-light btn">
+                        Text
+                    </a>
+                    <a class="col s3 waves-effect waves-light btn">
+                        Text
+                    </a>
+                </div>
+                
             </div>
         </div>
 
