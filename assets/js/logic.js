@@ -435,11 +435,29 @@ inputEl.addEventListener("click", function(event){
 // ============================================================================== LOCALSTORAGE ==============================================================================
 function putIntoStorage(newSearch) {
 
-    arrStor.push(newSearch);
+    if (arrStor.length > 0) {
+    
+        for (var i=0; i < arrStor.length; i++) {
+            console.log(newSearch);
+            console.log(arrStor[i]);
+            if (arrStor.indexOf(newSearch) === -1) {
+                arrStor.push(newSearch);
+
+            }
+        }
+
+    } else {
+        arrStor.push(newSearch);
+    }
+
+    console.log(arrStor);
+
     if (arrStor.length > 4) {
         arrStor.splice(0,1);
         
     }
+
+    
 
     localStorage.setItem("searches", JSON.stringify(arrStor));
 
