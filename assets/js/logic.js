@@ -413,8 +413,8 @@ function SearchHistoryBtn(searchName) {
     
     
     if (searchRow.childElementCount > 4) {
-     
-        searchRow.removeChild(searchRow.childNodes[5]);
+        console.log(searchRow.childNodes);
+        searchRow.removeChild(searchRow.childNodes[1]);
     }
 };
 
@@ -436,6 +436,10 @@ inputEl.addEventListener("click", function(event){
 function putIntoStorage(newSearch) {
 
     arrStor.push(newSearch);
+    if (arrStor.length > 4) {
+        arrStor.splice(0,1);
+        
+    }
 
     localStorage.setItem("searches", JSON.stringify(arrStor));
 
@@ -459,6 +463,8 @@ function getFromStorage() {
         SearchHistoryBtn(retrievedSearches[i]);
     }
 
+    
+    console.log(arrStor);
 
 };
 
@@ -571,6 +577,8 @@ searchRow.addEventListener("click", function(event) {
     } else {
         return;
     }
+
+    
 });
 
 getFromStorage();
