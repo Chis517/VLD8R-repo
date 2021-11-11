@@ -428,7 +428,7 @@ inputEl.addEventListener("click", function(event){
     labelMessage.textContent = "";
 });
 
-
+// 
 
 
 
@@ -541,6 +541,7 @@ testForm.addEventListener("submit", function(event) {
         
         inputEl.value= "";
         labelMessage.textContent= "Invalid Input";
+
         
     }
     
