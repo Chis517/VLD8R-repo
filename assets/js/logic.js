@@ -438,8 +438,7 @@ function putIntoStorage(newSearch) {
     if (arrStor.length > 0) {
     
         for (var i=0; i < arrStor.length; i++) {
-            console.log(newSearch);
-            console.log(arrStor[i]);
+            
             if (arrStor.indexOf(newSearch) === -1) {
                 arrStor.push(newSearch);
 
@@ -450,7 +449,7 @@ function putIntoStorage(newSearch) {
         arrStor.push(newSearch);
     }
 
-    console.log(arrStor);
+   
 
     if (arrStor.length > 4) {
         arrStor.splice(0,1);
