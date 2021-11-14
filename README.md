@@ -38,6 +38,7 @@ The purpose of our project was to provide a service to provide more information 
 
 ![alt text](/assets/images/VLD8r-call-api.jpeg)
 
+## Link to Github Pages 
 
 ## Contributions 
 Created and Designed by Rae Alejandrino, Christian Ouimet, Ryan Arrigo and Jason Libertelli 
