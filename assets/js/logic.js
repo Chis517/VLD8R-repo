@@ -14,7 +14,7 @@ var arrStor = [];
 
 
 function numAPIFetch(num) {
-    var numAPIUrl = "https://apilayer.net/api/validate?access_key=" + "0d85ce9cb7d0f17ad315893298a686f4" + "&number=" + num + "&format=1";
+    var numAPIUrl = "http://apilayer.net/api/validate?access_key=" + "3a5dd59dd07b7db299f8a1f444dcf74a" + "&number=" + num + "&format=1";
 
     fetch(numAPIUrl).then(function (response) {
         if (response.ok) {
